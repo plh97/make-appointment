@@ -1,0 +1,22 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum ScheduleEventStatus {
+  OPEN  @map("0")
+  CLOSE @map("1")
+}
+
+model ScheduleEvent {
+  id     String              @id @default(uuid()) @map("_id")
+  title  String
+  start  String
+  end    String
+  status ScheduleEventStatus? @default(OPEN)
+}

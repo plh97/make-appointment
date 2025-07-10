@@ -1,0 +1,7 @@
+{
+  "**/*.{json,md,html}": ["pnpm run lint:prettier"],
+  "**/frontend/**/*.{js,ts,tsx}": ["pnpm run lint:prettier"],
+  "**/backend/**/*.{js,ts,tsx}": ["pnpm run lint:prettier"],
+  "**/*.css": "stylelint",
+  "**/*.scss": ["pnpm run lint:prettier", "stylelint --customSyntax=post-scss"]
+}

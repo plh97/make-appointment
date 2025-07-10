@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: ubuntu
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306" # Maps host port 3306 to container port 3306
+    expose:
+      - 3306

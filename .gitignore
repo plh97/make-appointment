@@ -1,0 +1,22 @@
+node_modules/
+mongodb/data/
+*.log
+dist
+static/*
+.DS_Store
+.eslintcache
+# terraform/variable.tf
+terraform.tfstate.backup
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+.terraform.tfstate.lock.info
+
+# .circleci
+*.log
+.history
+.pnpm-store/
+# *.pem
+
+# ssh_config
+.vercel
