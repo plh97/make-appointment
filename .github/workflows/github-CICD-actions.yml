@@ -1,5 +1,5 @@
 name: GitHub Actions CICD
-run-name: ${{ github.actor }} deploy chatroom 🚀
+run-name: ${{ github.actor }} deploy make-appointment 🚀
 on:
   push:
     branches:

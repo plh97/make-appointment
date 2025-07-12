@@ -8,15 +8,15 @@
   "name": "backend",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "author": "plh2 <pengliheng111@mgail.com>",
-  "homepage": "https://github.com/plh2/chatroom#readme",
+  "author": "plh97 <pengliheng111@mgail.com>",
+  "homepage": "https://github.com/plh97/make-appointment#readme",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plh2/chatroom.git"
+    "url": "git+https://github.com/plh97/make-appointment.git"
   },
   "bugs": {
-    "url": "https://github.com/plh2/chatroom/issues"
+    "url": "https://github.com/plh97/make-appointment/issues"
   },
   "devDependencies": {
     "@koa/cors": "^5.0.0",

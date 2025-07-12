@@ -3,7 +3,7 @@
   "scripts": {
     "db:studio": "prisma studio",
     "db:push": "prisma db push --skip-generate",
-    "dev": "prisma generate && prisma db push",
+    "dev": "prisma generate && npm run db:push",
     "postinstall": "prisma generate"
   },
   "devDependencies": {

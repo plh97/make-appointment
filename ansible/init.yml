@@ -19,25 +19,25 @@
     - name: Delete content & directory
       file:
         state: absent
-        path: ~/chatroom/
+        path: ~/make-appointment/
     - name: Clone Repository
       git:
-        repo: https://github.com/plh97/c.git
-        dest: ~/chatroom
+        repo: https://github.com/plh97/make-appointment.git
+        dest: ~/make-appointment
         clone: yes
         update: yes
-        version: feat/terraform-aws
+        version: main
 
     - name: install dependences
       command:
         cmd: pnpm i
-        chdir: ~/chatroom
+        chdir: ~/make-appointment
     # - name: build
     #   command:
-    #     chdir: ~/chatroom
+    #     chdir: ~/make-appointment
     #     cmd: npm run build
     - name: deploy
       command:
-        chdir: ~/chatroom
-        cmd: pnpm run deploy
+        chdir: ~/make-appointment
+        cmd: pnpm run db
 ...

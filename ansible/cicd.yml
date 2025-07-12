@@ -18,25 +18,25 @@
     # - name: Delete content & directory
     #   file:
     #     state: absent
-    #     path: ~/chatroom/
-    - name: pull latest code on develop branch
+    #     path: ~/make-appointment/
+    - name: pull latest code on main branch
       git:
-        repo: https://github.com/plh2/c.git
-        dest: ~/c
+        repo: https://github.com/plh97/make-appointment.git
+        dest: ~/make-appointment
         force: true
-        version: develop
+        version: main
 
     - name: install dependences
       command:
         cmd: pnpm run bootstrap
-        chdir: ~/c
+        chdir: ~/make-appointment
 
     # - name: build
     #   command:
-    #     chdir: ~/c
+    #     chdir: ~/make-appointment
     #     cmd: npm run build
 
     - name: deploy
       command:
-        chdir: ~/c
-        cmd: npm run deploy
+        chdir: ~/make-appointment
+        cmd: npm run db

@@ -21,7 +21,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "packer-linux-aws"
+  ami_name      = "packer-linux-aws-node-22"
   instance_type = "t2.micro"
   region        = "ap-southeast-1"
   source_ami           = "ami-09dac21d1664bc313"

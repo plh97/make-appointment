@@ -13,7 +13,7 @@ dockerd
 
 sudo apt-get install -y gcc g++ make
 
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 sudo apt-get install -y npm
 sudo npm install pnpm nodemon -g
