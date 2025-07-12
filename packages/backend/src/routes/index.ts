@@ -14,4 +14,4 @@ export default router
   .get("/schedule-event", GetScheduleEvents)
   .post("/schedule-event", AddScheduleEvent)
   .delete("/schedule-event", DeleteScheduleEvent)
-  .patch("/schedule-event", PatchScheduleEvent)
+  .patch("/schedule-event", PatchScheduleEvent);

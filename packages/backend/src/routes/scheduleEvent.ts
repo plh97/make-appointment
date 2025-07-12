@@ -33,14 +33,13 @@ export async function AddScheduleEvent(ctx: Context) {
       message: "",
       code: 0,
     },
-    ctx.ws
+    ctx.ws,
   );
   ctx.body = {
     code: 0,
     data: res,
   };
 }
-
 
 /**
  * delete
@@ -51,7 +50,7 @@ export async function DeleteScheduleEvent(ctx: Context) {
   const info = ctx.request.query as { id: string };
 
   const res = await ScheduleEventModel.delete({
-    where: { id: info.id }
+    where: { id: info.id },
   });
   onMsgReceive(
     {
@@ -61,14 +60,13 @@ export async function DeleteScheduleEvent(ctx: Context) {
       message: "",
       code: 0,
     },
-    ctx.ws
+    ctx.ws,
   );
   ctx.body = {
     code: 0,
     data: res,
   };
 }
-
 
 /**
  * patch
@@ -79,7 +77,7 @@ export async function PatchScheduleEvent(ctx: Context) {
   const info = ctx.request.body;
   const res = await ScheduleEventModel.update({
     where: { id: info.id },
-    data: info
+    data: info,
   });
   onMsgReceive(
     {
@@ -89,16 +87,13 @@ export async function PatchScheduleEvent(ctx: Context) {
       message: "",
       code: 0,
     },
-    ctx.ws
+    ctx.ws,
   );
   ctx.body = {
     code: 0,
     data: res,
   };
 }
-
-
-
 
 // export async function Login(ctx: Context) {
 //   if (!ctx.request.body) {

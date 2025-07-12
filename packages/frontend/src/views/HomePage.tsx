@@ -1,4 +1,4 @@
-import DemoApp from '@/components/Calendar';
+import DemoApp from "@/components/Calendar";
 
 export function HomePage() {
   return (

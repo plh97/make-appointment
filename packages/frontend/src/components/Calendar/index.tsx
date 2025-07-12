@@ -1,12 +1,17 @@
-import { ScheduleEvent } from 'db';
-import { useState } from 'react';
-import { DateSelectArg, EventApi, EventContentArg, formatDate } from '@fullcalendar/core';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import Api from '@/Api';
-import './index.css';
+import { ScheduleEvent } from "db";
+import { useState } from "react";
+import {
+  DateSelectArg,
+  EventApi,
+  EventContentArg,
+  formatDate,
+} from "@fullcalendar/core";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import Api from "@/Api";
+import "./index.css";
 
 let eventGuid = 0;
 
@@ -18,22 +23,24 @@ export default function Calendar({ canDelete }: { canDelete?: boolean }) {
   const [events, setEvents] = useState<ScheduleEvent[]>([]);
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
   useWebsocket((data: ScheduleEvent) => {
-    const localEvent = events.find(item => item.id === data.id);
+    const localEvent = events.find((item) => item.id === data.id);
     if (!localEvent) {
-      setEvents([...events, data])
+      setEvents([...events, data]);
     } else {
-      setEvents(events.map(eve => {
-        if (eve.id === data.id) {
-          return data
-        }
-        return eve
-      }))
+      setEvents(
+        events.map((eve) => {
+          if (eve.id === data.id) {
+            return data;
+          }
+          return eve;
+        })
+      );
     }
   });
   useEffect(() => {
-    Api.getScheduleEvents().then(list => {
+    Api.getScheduleEvents().then((list) => {
       setEvents(list);
-    })
+    });
   }, []);
 
   async function handleDateSelect({ start, view }: DateSelectArg) {
@@ -49,15 +56,15 @@ export default function Calendar({ canDelete }: { canDelete?: boolean }) {
     const endTime = new Date(startTime.getTime());
     endTime.setMinutes(startMinutes + 15);
 
-    const input = prompt('Event name'); // Default title if prompt is canceled
+    const input = prompt("Event name"); // Default title if prompt is canceled
     if (!input) return;
     // Create new event with unique ID
     const newEvent = {
       // id: createEventId(),
       title: input,
       // moment().format('MMMM Do YYYY, h:mm:ss a');
-      start: moment(startTime).format('YYYY-MM-DDTHH:mm:ss'),
-      end: moment(endTime).format('YYYY-MM-DDTHH:mm:ss'),
+      start: moment(startTime).format("YYYY-MM-DDTHH:mm:ss"),
+      end: moment(endTime).format("YYYY-MM-DDTHH:mm:ss"),
       status: null,
     };
 
@@ -75,15 +82,17 @@ export default function Calendar({ canDelete }: { canDelete?: boolean }) {
         id: clickInfo.event.id,
         start: clickInfo.event.start,
         end: clickInfo.event.end,
-        status: 'CLOSE'
-      }
+        status: "CLOSE",
+      };
       await Api.updateScheduleEvents(updatedEvent as unknown as ScheduleEvent);
-      setEvents(events?.map(item => {
-        if (item.id === clickInfo.event.id) {
-          return updatedEvent
-        }
-        return item;
-      }))
+      setEvents(
+        events?.map((item) => {
+          if (item.id === clickInfo.event.id) {
+            return updatedEvent;
+          }
+          return item;
+        })
+      );
     }
   }
 
@@ -92,14 +101,14 @@ export default function Calendar({ canDelete }: { canDelete?: boolean }) {
   }
 
   function formatEvent(events: ScheduleEvent[]) {
-    return events.map(e => {
+    return events.map((e) => {
       if (e.status === "CLOSE") {
         Object.assign(e, {
-          color: 'grey'
+          color: "grey",
         });
       }
       return e;
-    })
+    });
   }
 
   return (
@@ -110,9 +119,9 @@ export default function Calendar({ canDelete }: { canDelete?: boolean }) {
           // key={currentEvents.length}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           headerToolbar={{
-            left: 'prev,next today',
-            center: 'title',
-            right: 'timeGridDay',
+            left: "prev,next today",
+            center: "title",
+            right: "timeGridDay",
           }}
           initialView="timeGridDay"
           slotMinTime="09:00:00"
@@ -140,14 +149,12 @@ export default function Calendar({ canDelete }: { canDelete?: boolean }) {
 
 function renderEventContent(eventInfo: EventContentArg) {
   return (
-    <div className='relative'>
+    <div className="relative">
       <b>{eventInfo.timeText}</b>
       <i>{eventInfo.event.title}</i>
-      {
-        eventInfo.event.extendedProps.status === 'CLOSE' && (
-          <span className='float-right mr-2'>CLOSED</span>
-        )
-      }
+      {eventInfo.event.extendedProps.status === "CLOSE" && (
+        <span className="float-right mr-2">CLOSED</span>
+      )}
     </div>
   );
 }
@@ -170,7 +177,13 @@ function Sidebar({ currentEvents }: { currentEvents: EventApi[] }) {
 function SidebarEvent({ event }: { event: EventApi }) {
   return (
     <li key={event.id}>
-      <b>{formatDate(event.start ?? '', { year: 'numeric', month: 'short', day: 'numeric' })}</b>
+      <b>
+        {formatDate(event.start ?? "", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </b>
       <i>{event.title}</i>
     </li>
   );

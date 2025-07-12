@@ -65,27 +65,26 @@ const Api = {
       url: "/schedule-event",
       method: "get",
     }),
-  addScheduleEvents: (data: Omit<ScheduleEvent, 'id'>) =>
+  addScheduleEvents: (data: Omit<ScheduleEvent, "id">) =>
     request<ScheduleEvent>({
       url: "/schedule-event",
       method: "post",
-      data
+      data,
     }),
   deleteScheduleEvents: (id: string) =>
     request<ScheduleEvent>({
       url: "/schedule-event",
       method: "delete",
       params: {
-        id
-      }
+        id,
+      },
     }),
   updateScheduleEvents: (data: Partial<ScheduleEvent> & { id: string }) =>
     request<ScheduleEvent>({
       url: "/schedule-event",
       method: "patch",
-      data
+      data,
     }),
-
 };
 
 export default Api;

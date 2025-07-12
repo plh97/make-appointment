@@ -21,14 +21,14 @@ app
       // origin: frontendOrigin,
       credentials: true,
       // maxAge: 1000 * 60 * 60 * 24 * 7,
-    })
+    }),
   )
   .use(
     kosStatic(path.resolve("public"), {
       gzip: true,
       maxAge: 1000 * 60 * 60 * 24 * 7,
-    })
-  )
+    }),
+  );
 
 const server = http.createServer(app.callback()).listen(HTTP_PROT, () => {
   console.log(`[NODE] listening at port ${HTTP_PROT}`);

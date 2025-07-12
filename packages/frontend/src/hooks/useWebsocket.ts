@@ -4,7 +4,11 @@ import { ScheduleEvent } from "db";
 
 export let ws: SocketClient;
 
-export default function useWebsocket(cb = (data: ScheduleEvent) => { }, disconnect = () => { }, reconnect = () => { }) {
+export default function useWebsocket(
+  cb = (data: ScheduleEvent) => {},
+  disconnect = () => {},
+  reconnect = () => {}
+) {
   if (
     !ws?.socket ||
     ws?.socket?.readyState === WebSocket.CLOSED ||

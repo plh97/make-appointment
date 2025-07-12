@@ -14,7 +14,5 @@ export const App = (): React.ReactNode => {
     },
   ]);
   // const browserRouter = withFaroRouterInstrumentation(reactBrowserRouter);
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
