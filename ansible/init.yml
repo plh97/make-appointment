@@ -39,5 +39,5 @@
     - name: deploy
       command:
         chdir: ~/make-appointment
-        cmd: pnpm run db
+        cmd: pnpm run db -d
 ...
