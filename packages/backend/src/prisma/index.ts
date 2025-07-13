@@ -4,15 +4,9 @@ declare global {
   var prisma: PrismaClient;
 }
 
-export type {
-  ScheduleEvent,
-  ScheduleEventStatus,
-} from "@prisma/client";
+export type { ScheduleEvent, ScheduleEventStatus } from "@prisma/client";
 
 export let prisma: PrismaClient;
-
-
-
 
 if (typeof window === "undefined") {
   if (process.env.NODE_ENV === "production") {
@@ -24,9 +18,12 @@ if (typeof window === "undefined") {
     }
     prisma = global.prisma;
   }
-  prisma.scheduleEvent.findFirst().then((user) => {
-    console.log(`[DB] User count: ${user}`);
-  }).catch((err) => {
-    console.log("[DEV][DB] init fail", err);
-  })
+  prisma.scheduleEvent
+    .findFirst()
+    .then((user: unknown) => {
+      console.log(`[DB] User count: ${user}`);
+    })
+    .catch((err: unknown) => {
+      console.log("[DEV][DB] init fail", err);
+    });
 }

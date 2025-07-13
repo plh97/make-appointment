@@ -1,4 +1,4 @@
-import { ScheduleEvent } from "db";
+import { ScheduleEvent } from "backend";
 import { useState } from "react";
 import {
   DateSelectArg,

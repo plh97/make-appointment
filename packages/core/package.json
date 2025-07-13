@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@types/md5": "^2.3.2",
-    "db": "workspace:*",
     "md5": "^2.3.0",
     "nanoid": "^5.0.7",
     "reconnecting-websocket": "^4.4.0",

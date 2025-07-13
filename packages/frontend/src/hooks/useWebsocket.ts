@@ -1,6 +1,6 @@
 import { SocketClient } from "core";
 import { wsUrl } from "@/config";
-import { ScheduleEvent } from "db";
+import { ScheduleEvent } from "backend";
 
 export let ws: SocketClient;
 

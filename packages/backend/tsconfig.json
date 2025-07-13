@@ -8,9 +8,11 @@
     "moduleResolution": "NodeNext",
     "strict": true,
     "baseUrl": ".",
+    "declaration": true,
+    "outDir": "dist",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "prisma/index.ts"]
 }

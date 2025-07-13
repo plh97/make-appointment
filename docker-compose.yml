@@ -7,10 +7,10 @@ services:
       MYSQL_USER: ubuntu
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: mydb
-    ports:
-      - "3306:3306" # Maps host port 3306 to container port 3306
-    expose:
-      - 3306
+    # ports:
+    #   - "3306:3306" # Maps host port 3306 to container port 3306
+    # expose:
+    #   - 3306
     networks:
       - backend
 
@@ -31,14 +31,14 @@ services:
   backend:
     hostname: backend
     restart: always
-    command: pnpm -F backend run dev
+    command: npm run dev
     environment:
       DATABASE_URL: mysql://root:password@db:3306/mydb
       PORT: "8080"
     # volumes:
     #   - ./:/usr/src/app
     build:
-      dockerfile: ./backend.Dockerfile
+      context: "./packages/backend"
     networks:
       - backend
 

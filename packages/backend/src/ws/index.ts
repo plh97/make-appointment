@@ -1,10 +1,10 @@
-import { IOnMsgReceive, IWsData, WS_EVENT } from "core";
+import { IOnMsgReceive, IWsData, WS_EVENT } from "@/core";
 import { IScheduleEvent } from "@/interface";
 
 export const onMsgReceive: IOnMsgReceive = async (
   objMsg: IWsData<IScheduleEvent>,
   ws,
-  socket
+  socket,
 ) => {
   const { event } = objMsg;
   let broadcastData: Partial<IWsData<unknown>> = {};
@@ -18,7 +18,7 @@ export const onMsgReceive: IOnMsgReceive = async (
         event,
         requestId: objMsg.requestId,
         ...broadcastData,
-      })
+      }),
     );
     return;
   }
@@ -29,7 +29,7 @@ export const onMsgReceive: IOnMsgReceive = async (
         event,
         requestId: objMsg.requestId,
         ...broadcastData,
-      })
+      }),
     );
   });
 };

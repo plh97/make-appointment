@@ -1,4 +1,4 @@
-import { ScheduleEvent } from "db";
+import { ScheduleEvent } from "@/prisma";
 
 export interface IScheduleEvent extends ScheduleEvent {
   // id: Types.ObjectId;

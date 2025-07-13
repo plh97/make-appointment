@@ -1,7 +1,7 @@
 import { Context } from "koa";
 import { ScheduleEventModel } from "@/model/scheduleEvent";
 import { IScheduleEvent } from "@/interface";
-import { WS_EVENT } from "core";
+import { WS_EVENT } from "@/core";
 import { onMsgReceive } from "@/ws";
 
 /**
@@ -33,7 +33,7 @@ export async function AddScheduleEvent(ctx: Context) {
       message: "",
       code: 0,
     },
-    ctx.ws
+    ctx.ws,
   );
   ctx.body = {
     code: 0,
@@ -60,7 +60,7 @@ export async function DeleteScheduleEvent(ctx: Context) {
       message: "",
       code: 0,
     },
-    ctx.ws
+    ctx.ws,
   );
   ctx.body = {
     code: 0,
@@ -87,7 +87,7 @@ export async function PatchScheduleEvent(ctx: Context) {
       message: "",
       code: 0,
     },
-    ctx.ws
+    ctx.ws,
   );
   ctx.body = {
     code: 0,

@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestConfig } from "axios";
-import { ScheduleEvent } from "db";
+import { ScheduleEvent } from "backend";
 
 const { toast } = createStandaloneToast();
 
