@@ -20,7 +20,7 @@ services:
       resources:
         limits:
           cpus: "0.3" # Limit to 30% of 1 vCPU
-          memory: 300M # Reduced from 500M
+          memory: 500M # Reduced from 500M
         reservations:
           memory: 100M # Reserve minimum memory
     networks:
