@@ -11,7 +11,7 @@ export let prisma: PrismaClient;
 if (typeof window === "undefined") {
   if (process.env.NODE_ENV === "production") {
     prisma = new PrismaClient();
-    console.log("[PROD][DB] init success");
+    console.log("[PROD][DB] init success", process.env.DATABASE_URL);
   } else {
     if (!global.prisma) {
       global.prisma = new PrismaClient();

@@ -19,7 +19,10 @@ services:
     deploy:
       resources:
         limits:
-          memory: 500M
+          cpus: "0.3" # Limit to 30% of 1 vCPU
+          memory: 300M # Reduced from 500M
+        reservations:
+          memory: 100M # Reserve minimum memory
     networks:
       - gate-tier
 
@@ -37,7 +40,10 @@ services:
     deploy:
       resources:
         limits:
-          memory: 50M
+          cpus: "0.2" # Limit to 20% of 1 vCPU
+          memory: 50M # Already appropriate
+        reservations:
+          memory: 20M
     networks:
       - gate-tier
 
@@ -45,14 +51,17 @@ services:
     restart: always
     command: npm run serve
     environment:
-      DATABASE_URL: mysql://root:password@db:3306/mydb
+      DATABASE_URL: mysql://ubuntu:password@db:3306/mydb
       PORT: "8080"
     build:
       context: "./packages/backend"
     deploy:
       resources:
         limits:
-          memory: 200M
+          cpus: "0.3" # Limit to 30% of 1 vCPU
+          memory: 150M # Reduced from 200M
+        reservations:
+          memory: 50M
     depends_on:
       # the pre-condition is db is running, otherwise, nodejs server will throw error because of none db server
       db:
