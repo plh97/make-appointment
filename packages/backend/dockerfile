@@ -1,8 +1,9 @@
 FROM node:22
-COPY . /app
+COPY ../../ /app
 WORKDIR /app
-# RUN corepack enable
-RUN npm i ts-node
-CMD [ "npm run prisma" ]
+RUN corepack enable
+RUN pnpm i
+# RUN pnpm -F backend run prisma
+CMD [ "pnpm -F backend run prisma", "pnpm -F backend run serve" ]
 # RUN [ "ls" ]
 # RUN npm install --save-dev tsconfig-paths
