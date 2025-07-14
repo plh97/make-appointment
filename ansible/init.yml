@@ -28,14 +28,23 @@
         update: yes
         version: main
 
+    - name: deploy
+      command:
+        chdir: ~/make-appointment
+        cmd: rm -rf ~/make-appointment/packages/frontend
+        cmd: rm -rf ~/make-appointment/packages/core
     - name: install dependences
       command:
-        cmd: pnpm i
+        cmd: pnpm install --max-parallel=1
+        chdir: ~/make-appointment
+    - name: install dependences
+      command:
+        cmd: pnpm install --max-parallel=1
         chdir: ~/make-appointment/packages/backend
-    # - name: build
-    #   command:
-    #     chdir: ~/make-appointment
-    #     cmd: npm run build
+    - name: install dependences
+      command:
+        cmd: pnpm store prune
+        chdir: ~/make-appointment/packages/backend
     # - name: deploy
     #   command:
     #     chdir: ~/make-appointment
