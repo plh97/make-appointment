@@ -59,6 +59,9 @@ services:
     networks:
       - backend
 
+volumes:
+  mysql-data:
+
 networks:
   backend:
     name: backend
