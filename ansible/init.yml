@@ -31,13 +31,13 @@
     - name: install dependences
       command:
         cmd: pnpm i
-        chdir: ~/make-appointment
+        chdir: ~/make-appointment/packages/backend
     # - name: build
     #   command:
     #     chdir: ~/make-appointment
     #     cmd: npm run build
-    - name: deploy
-      command:
-        chdir: ~/make-appointment
-        cmd: pnpm run db -d
+    # - name: deploy
+    #   command:
+    #     chdir: ~/make-appointment
+    #     cmd: pnpm run db -d
 ...
