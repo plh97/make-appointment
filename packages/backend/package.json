@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "lint:prettier": "prettier src --write",
-    "serve": "npx ts-node --transpile-only ./src/index.ts",
+    "serve": "ts-node --transpile-only ./src/index.ts",
     "test": "jest --passWithNoTests",
     "db:studio": "prisma studio",
     "db:push": "prisma db push --skip-generate",

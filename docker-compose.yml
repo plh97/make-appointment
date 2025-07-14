@@ -7,66 +7,67 @@ services:
       MYSQL_USER: ubuntu
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: mydb
-    # ports:
-    #   - "3306:3306" # Maps host port 3306 to container port 3306
-    # expose:
-    #   - 3306
 
     volumes:
       - ./my.cnf:/etc/mysql/my.cnf
       - mysql-data:/var/lib/mysql
-
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "db", "-u", "root", "-password"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:
           memory: 500M
     networks:
-      - backend
+      - gate-tier
 
   nginx:
-    hostname: nginx
     restart: always
     build:
       context: "./nginx"
-    # volumes:
-    #   - ./nginx/conf.d/:/etc/nginx/conf.d/
-    #   - ./nginx/log:/var/log/nginx/
     ports:
       - "443:443"
       - "8080:8080"
+    # the pre-condition is backend is running, otherwise, nginx will throw error because of none backend server
+    depends_on:
+      backend:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           memory: 50M
     networks:
-      - backend
+      - gate-tier
 
   backend:
-    hostname: backend
     restart: always
     command: npm run serve
     environment:
       DATABASE_URL: mysql://root:password@db:3306/mydb
       PORT: "8080"
-    # volumes:
-    #   - ./:/usr/src/app
     build:
       context: "./packages/backend"
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 200M
+    depends_on:
+      # the pre-condition is db is running, otherwise, nodejs server will throw error because of none db server
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://backend:8080/api/schedule-event"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     networks:
-      - backend
+      - gate-tier
 
 volumes:
   mysql-data:
 
 networks:
-  backend:
-    name: backend
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.123.0/24
+  gate-tier:

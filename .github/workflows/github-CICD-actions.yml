@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - "main"
+  paths:
+    - "packages/backend/**" # Trigger only when files in packages/backend change
+    # - "ansible/**"          # Include ansible files if changes there should also trigger
+    # - "docker-compose.yml"  # Include docker-compose.yml if relevant to backend deployment
 jobs:
   Ansible-Actions:
     runs-on: ubuntu-latest
