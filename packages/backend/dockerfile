@@ -1,8 +1,8 @@
 FROM node:current-alpine3.22
 COPY . /app
 WORKDIR /app
-RUN corepack enable
-RUN pnpm i
-CMD [ "pnpm run prisma" ]
+# RUN corepack enable
+RUN npm i ts-node
+CMD [ "npm run prisma" ]
 # RUN [ "ls" ]
 # RUN npm install --save-dev tsconfig-paths

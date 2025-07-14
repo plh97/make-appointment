@@ -11,6 +11,13 @@ services:
     #   - "3306:3306" # Maps host port 3306 to container port 3306
     # expose:
     #   - 3306
+
+    volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
+    deploy:
+      resources:
+        limits:
+          memory: 400M
     networks:
       - backend
 
@@ -25,13 +32,17 @@ services:
     ports:
       - "443:443"
       - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
     networks:
       - backend
 
   backend:
     hostname: backend
     restart: always
-    command: npm run dev
+    command: npm run serve
     environment:
       DATABASE_URL: mysql://root:password@db:3306/mydb
       PORT: "8080"
@@ -39,6 +50,10 @@ services:
     #   - ./:/usr/src/app
     build:
       context: "./packages/backend"
+    deploy:
+      resources:
+        limits:
+          memory: 300M
     networks:
       - backend
 
