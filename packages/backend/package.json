@@ -6,8 +6,7 @@
     "test": "jest --passWithNoTests",
     "db:studio": "prisma studio",
     "db:push": "prisma db push --skip-generate",
-    "prisma": "prisma generate && npm run db:push",
-    "postinstall": "npm run prisma"
+    "prisma": "prisma generate && npm run db:push"
   },
   "name": "backend",
   "version": "0.0.0",
