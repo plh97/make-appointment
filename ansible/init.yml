@@ -36,18 +36,18 @@
       command:
         chdir: ~/make-appointment
         cmd: rm -rf ~/make-appointment/packages/core
-    - name: install dependences
-      command:
-        cmd: pnpm i
-        chdir: ~/make-appointment
     # - name: install dependences
     #   command:
-    #     chdir: ~/make-appointment/packages/backend
-    #     cmd: npm i
+    #     cmd: pnpm i --frozen-lockfile
+    #     chdir: ~/make-appointment
     - name: deploy
       command:
         chdir: ~/make-appointment
         cmd: docker compose up -d
+    - name: install dependences
+      command:
+        cmd: pnpm i --frozen-lockfile
+        chdir: ~/make-appointment
     - name: deploy
       command:
         chdir: ~/make-appointment
