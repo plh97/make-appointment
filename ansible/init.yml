@@ -44,8 +44,12 @@
     #   command:
     #     chdir: ~/make-appointment/packages/backend
     #     cmd: npm i
-    # - name: deploy
-    #   command:
-    #     chdir: ~/make-appointment
-    #     cmd: pnpm run db -d
+    - name: deploy
+      command:
+        chdir: ~/make-appointment
+        cmd: docker compose up -d
+    - name: deploy
+      command:
+        chdir: ~/make-appointment
+        cmd: pnpm -F backend run serve
 ...

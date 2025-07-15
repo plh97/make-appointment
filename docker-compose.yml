@@ -13,6 +13,8 @@ services:
       - mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
+    expose:
+      - 3306
     deploy:
       resources:
         limits:
@@ -20,8 +22,6 @@ services:
           memory: 500M # Reduced from 500M
         reservations:
           memory: 100M # Reserve minimum memory
-    networks:
-      - gate-tier
 
   nginx:
     restart: always
@@ -36,31 +36,9 @@ services:
           memory: 50M # Already appropriate
         reservations:
           memory: 20M
-    networks:
-      - gate-tier
+    network_mode: host  # Use host network to access localhost:8080
 
-  # backend:
-  #   restart: always
-  #   command:
-  #     - pnpm -F backend run prisma
-  #     - pnpm -F backend run dev
-  #   environment:
-  #     DATABASE_URL: mysql://ubuntu:password@db:3306/mydb
-  #     PORT: "8080"
-  #   build:
-  #     dockerfile: ./backend.Dockerfile
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: "0.3" # Limit to 30% of 1 vCPU
-  #         memory: 150M # Reduced from 200M
-  #       reservations:
-  #         memory: 50M
-  #   networks:
-  #     - gate-tier
 
 volumes:
   mysql-data:
 
-networks:
-  gate-tier:
