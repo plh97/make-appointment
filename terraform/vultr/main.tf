@@ -1,9 +1,14 @@
 resource "vultr_instance" "instance" {
   plan              = "vc2-1c-1gb"
-  region            = "sgp"
-  snapshot_id       = "6d664ee7-8182-4127-85a6-3e802538f281"
-  firewall_group_id = "dd776525-5e19-42e1-b55a-ad6da1cf6a4b"
+  region            = "nrt"
+  snapshot_id       = "d7bf61a8-856e-4fdc-bb3b-34c4f6ad5cf1"
+  # : acbe8a72-6ad8-413e-ad71-a49db226cd11
+  firewall_group_id = "acbe8a72-6ad8-413e-ad71-a49db226cd11"
   hostname          = "vultr.guest"
-  label             = "chat room instance"
+  label             = "calendar make appointment instance"
   ssh_key_ids       = [var.ssh_key_id, vultr_ssh_key.my_ssh_key.id]
+
+  # provisioner "local-exec" {
+  #   command = "sh modify_ip.sh ${self.public_ip}"
+  # }
 }

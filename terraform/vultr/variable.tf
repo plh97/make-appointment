@@ -1,5 +1,6 @@
 variable "VULTR_API_KEY" {
   type = string
+  # default   = "${env("VULTR_API_KEY")}"
 }
 
 variable "ssh_key_id" {

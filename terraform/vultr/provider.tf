@@ -2,14 +2,14 @@ terraform {
   required_providers {
     vultr = {
       source  = "vultr/vultr"
-      version = "2.12.0"
+      version = "2.26.0"
     }
     ssh = {
       source = "loafoe/ssh"
     }
     acme = {
       source  = "vancluever/acme"
-      version = "~> 2.5.3"
+      version = "~> 2.33.0"
     }
   }
 }

@@ -1,5 +1,5 @@
 variable "key_name" {
-  default = "qwe"
+  default = "vultr-key"
 }
 
 resource "tls_private_key" "example" {
