@@ -7,4 +7,4 @@ RUN corepack enable && apt-get update -y && apt-get install -y openssl && rm -rf
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
-# RUN npm run prisma
+# RUN pnpm -F db dev

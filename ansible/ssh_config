@@ -1,5 +1,5 @@
 Host aws
-  HostName 18.136.198.195
+  HostName 18.142.230.236
   # HostKeyAlias ewq
   IdentityFile ~/.ssh/make-appointment-aws-key.pem
   CheckHostIP no

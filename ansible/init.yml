@@ -38,14 +38,14 @@
         cmd: rm -rf ~/make-appointment/packages/core
     - name: install dependences
       command:
-        cmd: npm i
+        cmd: pnpm i
         chdir: ~/make-appointment
-    - name: install dependences
-      command:
-        chdir: ~/make-appointment/packages/backend
-        cmd: npm i
-    - name: deploy
-      command:
-        chdir: ~/make-appointment
-        cmd: pnpm run db -d
+    # - name: install dependences
+    #   command:
+    #     chdir: ~/make-appointment/packages/backend
+    #     cmd: npm i
+    # - name: deploy
+    #   command:
+    #     chdir: ~/make-appointment
+    #     cmd: pnpm run db -d
 ...
