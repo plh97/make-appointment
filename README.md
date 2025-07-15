@@ -6,4 +6,4 @@ run inside vercel
 
 ## backend
 
-nodejs websocket prisma -> mysql which run inside VULTR
+nodejs websocket prisma -> mysql which run inside [VULTR](https://my.vultr.com/)
