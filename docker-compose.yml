@@ -11,10 +11,11 @@ services:
     volumes:
       - ./my.cnf:/etc/mysql/my.cnf
       - mysql-data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    expose:
-      - 3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "db", "-u", "root", "-password"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:
@@ -22,6 +23,8 @@ services:
           memory: 500M # Reduced from 500M
         reservations:
           memory: 100M # Reserve minimum memory
+    networks:
+      - gate-tier
 
   nginx:
     restart: always
@@ -29,6 +32,11 @@ services:
       context: "./nginx"
     ports:
       - "443:443"
+      - "8080:8080"
+    # the pre-condition is backend is running, otherwise, nginx will throw error because of none backend server
+    depends_on:
+      backend:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -36,9 +44,39 @@ services:
           memory: 50M # Already appropriate
         reservations:
           memory: 20M
-    network_mode: host  # Use host network to access localhost:8080
+    networks:
+      - gate-tier
 
+  backend:
+    restart: always
+    command: pnpm -F backend run serve
+    environment:
+      DATABASE_URL: mysql://ubuntu:password@db:3306/mydb
+      PORT: "8080"
+    build:
+      context: "./packages/backend"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3" # Limit to 30% of 1 vCPU
+          memory: 150M # Reduced from 200M
+        reservations:
+          memory: 50M
+    depends_on:
+      # the pre-condition is db is running, otherwise, nodejs server will throw error because of none db server
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://backend:8080/api/schedule-event"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - gate-tier
 
 volumes:
   mysql-data:
 
+networks:
+  gate-tier:
