@@ -7,5 +7,3 @@ COPY . /usr/src/app
 WORKDIR /usr/src/app
 
 RUN pnpm i
-
-RUN npm run prisma
