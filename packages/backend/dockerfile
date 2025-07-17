@@ -8,4 +8,4 @@ WORKDIR /usr/src/app
 
 RUN pnpm i
 
-# RUN npm run prisma
+RUN npm run prisma
