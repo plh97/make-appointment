@@ -6,7 +6,7 @@
     "bootstrap": "pnpm i",
     "db": "docker compose up",
     "db:down": "docker compose down",
-    "dev": "pnpm --parallel -F frontend -F backend dev",
+    "dev": "pnpm --parallel -F frontend dev",
     "up": "docker compose up",
     "preview:fe": "pnpm -F frontend build && pnpm -F frontend preview",
     "serve": "pnpm run up --build -d && pnpm run preview:fe",

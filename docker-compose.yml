@@ -49,7 +49,7 @@ services:
 
   backend:
     restart: always
-    command: pnpm -F backend run serve
+    command: pnpm run serve
     environment:
       DATABASE_URL: mysql://ubuntu:password@db:3306/mydb
       PORT: "8080"

@@ -92,13 +92,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8080",
+        target: "https://localhost:443",
         changeOrigin: true,
         secure: false,
         // rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
       "/ws": {
-        target: "ws://localhost:8080",
+        target: "ws://localhost:443",
         changeOrigin: true,
         secure: false,
       },
